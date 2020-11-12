@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Item heldItem;
 
-    public float speed = 20.0f;
+    public float speed = 40.0f;
     public float gravity = 9.8f;
     public float range = 2;
     
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+    
     }
 
     // Update is called once per frame
@@ -34,12 +35,17 @@ public class PlayerController : MonoBehaviour
             direction.z = Input.GetAxis("Vertical");
             direction = direction.normalized;
 
-            direction = transform.TransformDirection(direction);
+            //direction = transform.TransformDirection(direction);
+            
 
         }
+        else{
+            direction.y -= gravity * Time.deltaTime;
+        }
         
-        direction.y -= gravity * Time.deltaTime;
-        
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 1.00f);
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         controller.Move(direction * speed *  Time.deltaTime);
 
         if (Input.GetButtonDown("Fire1")){

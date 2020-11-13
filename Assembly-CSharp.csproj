@@ -36,8 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Customer.cs" />
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\Cute Chubby Pig\ChangeCharacter.cs" />
      <None Include="Assets\Table and chair\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <Reference Include="UnityEngine">
         <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

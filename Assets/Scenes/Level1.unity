@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 352260225}
-  speed: 10
+  speed: 15
   gravity: 9.8
   range: 4
   controller: {fileID: 0}

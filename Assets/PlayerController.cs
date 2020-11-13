@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Item heldItem;
 
-    public float speed = 40.0f;
+    public float speed = 20.0f;
     public float gravity = 9.8f;
     public float range = 2;
     
@@ -34,21 +34,19 @@ public class PlayerController : MonoBehaviour
             direction.x = Input.GetAxis("Horizontal");
             direction.z = Input.GetAxis("Vertical");
             direction = direction.normalized;
-
-            //direction = transform.TransformDirection(direction);
-            
-
         }
         else{
             direction.y -= gravity * Time.deltaTime;
         }
         
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 1.00f);
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
         controller.Move(direction * speed *  Time.deltaTime);
+        //rotates player to the direction they last moved in
+        if (Quaternion.LookRotation(direction).y != 0 || direction.z != 0){
+           transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 4.0f);
+        }
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z); //Prevents the player from rotating while moving
 
-        if (Input.GetButtonDown("Fire1")){
+        if (Input.GetButtonDown("Fire1")){ //Pickup/drop function
             Debug.Log("press");
             if (heldItem){
                 Drop(heldItem);

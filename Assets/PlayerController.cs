@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+    
     }
 
     // Update is called once per frame
@@ -33,16 +34,19 @@ public class PlayerController : MonoBehaviour
             direction.x = Input.GetAxis("Horizontal");
             direction.z = Input.GetAxis("Vertical");
             direction = direction.normalized;
-
-            direction = transform.TransformDirection(direction);
-
+        }
+        else{
+            direction.y -= gravity * Time.deltaTime;
         }
         
-        direction.y -= gravity * Time.deltaTime;
-        
         controller.Move(direction * speed *  Time.deltaTime);
+        //rotates player to the direction they last moved in
+        if (Quaternion.LookRotation(direction).y != 0 || direction.z != 0){
+           transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 4.0f);
+        }
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z); //Prevents the player from rotating while moving
 
-        if (Input.GetButtonDown("Fire1")){
+        if (Input.GetButtonDown("Fire1")){ //Pickup/drop function
             Debug.Log("press");
             if (heldItem){
                 Drop(heldItem);

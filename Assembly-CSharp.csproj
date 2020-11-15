@@ -40,6 +40,8 @@
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\Cute Chubby Pig\ChangeCharacter.cs" />
+     <Compile Include="Assets\GameLogic.cs" />
+     <Compile Include="Assets\CustomerSpawner.cs" />
      <None Include="Assets\Table and chair\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <Reference Include="UnityEngine">
         <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -1,38 +1,66 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
-    //private GameObject[] tableList = GameObject.FindGameObjectsWithTag("Table");
-    int tableNumber = 0;
-    bool occupied = false;
-    int count = 0;
+    [SerializeField]
+    public UnityEngine.Events.UnityEvent badLeave;
+    [SerializeField]
+    public UnityEngine.Events.UnityEvent seated;
+
+    public bool menu = false, eating = false, order = false, isSeated = false;
+    public bool spawnToggle = false;
+    private float maxTime = 60.0f;
+    private float leaveTimer = 5.0f;
+    private float menuTimer = 1.0f;
+    private Text timerText;
+    private Image timerBar;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        tableNumber = Random.Range(1, 16);
+        leaveTimer = maxTime;
+        menuTimer = UnityEngine.Random.Range(5, 10);
+        timerText = transform.Find("Canvas").Find("Background").Find("timeBarText").GetComponent<Text>();
+		timerBar = transform.Find("Canvas").Find("Background").Find("Image").Find("Image2").GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //yield return new WaitForSeconds(5);
-        //this.transform.position(tableList[tableNumber].ObjectPosition.x, tableList[tableNumber].ObjectPosition.y + 10, tableList[tableNumber].ObjectPosition.z);
         
-        /*while (tableList[tableNumber].isOccupied){
-            tableNumber++;
-            count++;
+        timerText.text = Math.Round(leaveTimer).ToString();
+		timerBar.fillAmount = leaveTimer / maxTime;
 
-            if (count == 16){
-                WaitForSecond(10);
-                break;
+        if (menu == false && eating == false){
+            leaveTimer = leaveTimer - Time.deltaTime;
+        }
+        if (menu == true){
+            menuTimer = menuTimer - Time.deltaTime;
+
+            if (menuTimer <= 0){
+                menu = false;
+                order = true;
             }
         }
-        if (tableList[tableNumber].isOccupied == false){
-            sit at table in chair 1;
-        }*/
-    
+
+        if(isSeated == true && spawnToggle == false){
+            seated.Invoke();
+            spawnToggle = true;
+        }
+
+        if (leaveTimer <= 0){
+            Debug.Log("exit");
+            Destroy(gameObject);
+            badLeave.Invoke();
+        }
+
+    }
+
+    public void takeOrder(){
+        order = false;
     }
 }

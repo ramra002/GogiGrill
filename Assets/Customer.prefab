@@ -212,7 +212,7 @@ MonoBehaviour:
   badLeave:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510790881083220008, guid: db72ed82dcb305f46bc44271d0d18cd3, type: 3}
+      - m_Target: {fileID: 4453906608713214796, guid: db72ed82dcb305f46bc44271d0d18cd3, type: 3}
         m_TargetAssemblyTypeName: GameLogic, Assembly-CSharp
         m_MethodName: badLeave
         m_Mode: 1
@@ -227,7 +227,7 @@ MonoBehaviour:
   seated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510790881083220008, guid: db72ed82dcb305f46bc44271d0d18cd3, type: 3}
+      - m_Target: {fileID: 4453906608713214796, guid: db72ed82dcb305f46bc44271d0d18cd3, type: 3}
         m_TargetAssemblyTypeName: GameLogic, Assembly-CSharp
         m_MethodName: spawnCheck
         m_Mode: 1
@@ -239,27 +239,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  tableList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   menu: 0
   eating: 0
   order: 0
   isSeated: 0
+  readyToEat: 0
+  checkReady: 0
+  spawnToggle: 0
 --- !u!1 &1244691159780159237
 GameObject:
   m_ObjectHideFlags: 0

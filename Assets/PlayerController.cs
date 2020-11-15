@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public UnityEngine.Events.UnityEvent customerOrderGet;
 
+    public UnityEngine.Events.UnityEvent goodLeave;
+
     private Item heldItem;
 
     private int tableNumber = 0;
@@ -46,8 +48,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1")){ //Pickup/drop function
             Debug.Log("press");
             itemCheck(objects);
-            customerCheck(objects);
+            customerSeat(objects);
             customerOrder(objects);
+            customerCheck(objects);
         }
 
     }
@@ -89,7 +92,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void customerCheck(Collider[] objects){
+    void customerSeat(Collider[] objects){
         foreach(Collider newObject in objects){
             if (newObject.tag == "Customer"){
                 if(newObject.gameObject.GetComponent<Customer>().isSeated == false){
@@ -109,6 +112,22 @@ public class PlayerController : MonoBehaviour
                         customerOrderGet.Invoke();
                         Debug.Log("Order");
                         checkCust.order = false;
+                        checkCust.readyToEat = true;
+                    }
+                }
+            }
+        }
+    }
+
+    void customerCheck(Collider[] objects){
+        foreach(Collider newObject in objects){
+            if (newObject.tag == "Customer"){
+                if(newObject.gameObject.GetComponent<Customer>()){
+                    Customer checkCust = newObject.gameObject.GetComponent<Customer>();
+                    if (checkCust.checkReady == true){
+                        Debug.Log("goodExit");
+                        Destroy(newObject.gameObject);
+                        goodLeave.Invoke();
                     }
                 }
             }

@@ -11,11 +11,12 @@ public class Customer : MonoBehaviour
     [SerializeField]
     public UnityEngine.Events.UnityEvent seated;
 
-    public bool menu = false, eating = false, order = false, isSeated = false;
+    public bool menu = false, eating = false, order = false, isSeated = false, readyToEat = false, checkReady = false;
     public bool spawnToggle = false;
     private float maxTime = 60.0f;
     private float leaveTimer = 5.0f;
     private float menuTimer = 1.0f;
+    private float eatTimer = 10.0f;
     private Text timerText;
     private Image timerBar;
 
@@ -23,6 +24,7 @@ public class Customer : MonoBehaviour
     void Awake()
     {
         leaveTimer = maxTime;
+        eatTimer = UnityEngine.Random.Range(10, 20);
         menuTimer = UnityEngine.Random.Range(5, 10);
         timerText = transform.Find("Canvas").Find("Background").Find("timeBarText").GetComponent<Text>();
 		timerBar = transform.Find("Canvas").Find("Background").Find("Image").Find("Image2").GetComponent<Image>();
@@ -46,6 +48,15 @@ public class Customer : MonoBehaviour
                 order = true;
             }
         }
+        
+        if (eating == true){
+            eatTimer = eatTimer - Time.deltaTime;
+
+            if (eatTimer <= 0){
+                eating = false;
+                checkReady = true;
+            }
+        }
 
         if(isSeated == true && spawnToggle == false){
             seated.Invoke();
@@ -54,10 +65,18 @@ public class Customer : MonoBehaviour
 
         if (leaveTimer <= 0){
             Debug.Log("exit");
-            Destroy(gameObject);
             badLeave.Invoke();
+            Destroy(gameObject);
+            
         }
 
+    }
+
+    void OnCollisionEnter(Collision col){
+        if (col.gameObject.tag == "Food" && readyToEat == true){
+            Destroy(col.gameObject);
+            eating = true;
+        }
     }
 
     public void takeOrder(){

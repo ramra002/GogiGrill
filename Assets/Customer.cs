@@ -135,23 +135,13 @@ public class Customer : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision col){
-        if (col.gameObject.tag == "Food" && readyToEat == true){
-            Destroy(col.gameObject);
-            readyToEat = false;
-            eating = true;
-        }
-    }
-
     private void leaveToggle(){
         if (leaveTimerText.gameObject.activeSelf == true){
-            Debug.Log("off");
             leaveTimerText.gameObject.SetActive(false);
             leaveTimerBar.gameObject.SetActive(false);
             leaveTimerBack.gameObject.SetActive(false);
         }
         else{
-            Debug.Log("on");
             leaveTimerText.gameObject.SetActive(true);
             leaveTimerBar.gameObject.SetActive(true);
             leaveTimerBack.gameObject.SetActive(true);

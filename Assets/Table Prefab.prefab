@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 9071446750618320221}
   - component: {fileID: 9071446750623567965}
   - component: {fileID: 1962344001603655113}
+  - component: {fileID: 9133596066828925176}
   m_Layer: 0
   m_Name: Table Prefab
   m_TagString: Table
@@ -691,3 +692,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7261467, y: 2.0237372, z: 0.7500705}
   m_Center: {x: -1.1807606, y: -0.44365937, z: 0.37496474}
+--- !u!114 &9133596066828925176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071446750616314781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e157ddc594e7b4d95ffbe8aac4cd36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getFood:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1704638510714266436, guid: 4ed6884bbe5a98840ad79baa98e4d03b, type: 3}
+        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+        m_MethodName: getFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

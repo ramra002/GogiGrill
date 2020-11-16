@@ -81,7 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   badLeaveCount: 0
   goodLeaveCount: 0
-  customerCount: 1
+  customerCount: 0
+  spawningCheck: 1
+  waitTime: 5
   callSpawn:
     m_PersistentCalls:
       m_Calls:

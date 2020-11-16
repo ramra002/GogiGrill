@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         item.transform.SetParent(itemSlot);
 
         item.transform.localPosition = Vector3.zero;
-        //item.transform.localEulerAngles = Vector3.zero;
+        item.transform.localEulerAngles = Vector3.zero;
     }
 
     void Drop(Item item){

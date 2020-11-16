@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour
 {
-    public int badLeaveCount = 0, goodLeaveCount = 0, customerCount = 1;
+    public int badLeaveCount = 0, goodLeaveCount = 0, customerCount = 0;
     public bool spawningCheck = false;
     public float waitTime = 5.0f;
     public UnityEngine.Events.UnityEvent callSpawn;
     // Start is called before the first frame update
     void Start()
     {
+        badLeaveCount = 0;
+        goodLeaveCount = 0;
+        customerCount = 0;
         waitTime = UnityEngine.Random.Range(5, 10);
         callSpawn.Invoke();
+        customerCount++;
     }
 
     // Update is called once per frame
@@ -20,26 +25,28 @@ public class GameLogic : MonoBehaviour
     {
         if(badLeaveCount == 3){
             Debug.Log("End Game, lose.");
-            //exit
+            SceneManager.LoadScene("Lose");
         }
         if(goodLeaveCount == 5){
             Debug.Log("Good Job!");
-            //exit
+            SceneManager.LoadScene("Win");
         }
-        if (spawningCheck == false && customerCount < 3){
+        if (spawningCheck == false && customerCount < 4){
             spawnCheck();
         }
     }
     
     public void badLeave(){
-        badLeaveCount++;
-        customerCount--;
-        
+        GameLogic eventSys = (GameLogic) GameObject.Find("EventSystem").GetComponent<GameLogic>();
+        eventSys.badLeaveCount++;
+        eventSys.customerCount--;
+        Debug.Log("badLeave");
     }
 
     public void goodLeave(){
-        goodLeaveCount++;
-        customerCount--;
+        GameLogic eventSys = (GameLogic) GameObject.Find("EventSystem").GetComponent<GameLogic>();
+        eventSys.goodLeaveCount++;
+        eventSys.customerCount--;
     }
 
     public void spawnCheck(){
@@ -52,10 +59,10 @@ public class GameLogic : MonoBehaviour
     public IEnumerator spawning(){
         GameObject spawner = GameObject.Find("CustomerSpawner");
         if (spawner.transform.childCount == 0){
-            if(customerCount < 3){
+            if(customerCount < 4){
 
                 yield return new WaitForSeconds(waitTime);
-            
+                waitTime = UnityEngine.Random.Range(5, 10);
                 callSpawn.Invoke();
                 customerCount++;
                 spawningCheck = false;

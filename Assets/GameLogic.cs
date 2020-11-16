@@ -19,7 +19,7 @@ public class GameLogic : MonoBehaviour
     void Update()
     {
         if(badLeaveCount == 3){
-            Debug.Log("End Game, lose");
+            Debug.Log("End Game, lose.");
             //exit
         }
         if(goodLeaveCount == 5){

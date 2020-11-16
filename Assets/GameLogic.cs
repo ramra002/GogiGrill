@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class GameLogic : MonoBehaviour
     public bool spawningCheck = false;
     public float waitTime = 5.0f;
     public UnityEngine.Events.UnityEvent callSpawn;
+
+    private int maxLostCount = 3, maxHappyCount = 5;
+
+    private Text goodCount;
+    private Text maxGoodCount;
+    private Text badCount;
+    private Text maxBadCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +26,27 @@ public class GameLogic : MonoBehaviour
         waitTime = UnityEngine.Random.Range(4, 7);
         callSpawn.Invoke();
         customerCount++;
+
+        goodCount = transform.Find("Canvas").Find("background1").Find("happyCount").GetComponent<Text>();
+        badCount = transform.Find("Canvas").Find("background2").Find("lostCount").GetComponent<Text>();
+
+        maxGoodCount = transform.Find("Canvas").Find("background1").Find("maxHappyCount").GetComponent<Text>();
+        maxBadCount = transform.Find("Canvas").Find("background2").Find("maxLostCount").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(badLeaveCount == 3){
+        goodCount.text = goodLeaveCount.ToString();
+        badCount.text = badLeaveCount.ToString();
+        maxGoodCount.text = maxHappyCount.ToString();
+        maxBadCount.text = maxLostCount.ToString();
+
+        if(badLeaveCount == maxLostCount){
             Debug.Log("End Game, lose.");
             SceneManager.LoadScene("Lose");
         }
-        if(goodLeaveCount == 5){
+        if(goodLeaveCount == maxHappyCount){
             Debug.Log("Good Job!");
             SceneManager.LoadScene("Win");
         }

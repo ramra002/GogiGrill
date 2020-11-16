@@ -13,7 +13,7 @@ public class Customer : MonoBehaviour
 
     public bool menu = false, eating = false, order = false, isSeated = false, readyToEat = false, checkReady = false;
     public bool spawnToggle = false;
-    private float maxLeaveTime = 60.0f;
+    private float maxLeaveTime = 50.0f;
     private float maxMenuTime = 60.0f;
     private float maxEatTime = 60.0f;
     private float leaveTimer = 5.0f;

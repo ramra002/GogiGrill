@@ -15,7 +15,7 @@ public class GameLogic : MonoBehaviour
         badLeaveCount = 0;
         goodLeaveCount = 0;
         customerCount = 0;
-        waitTime = UnityEngine.Random.Range(5, 10);
+        waitTime = UnityEngine.Random.Range(4, 7);
         callSpawn.Invoke();
         customerCount++;
     }
@@ -62,7 +62,7 @@ public class GameLogic : MonoBehaviour
             if(customerCount < 4){
 
                 yield return new WaitForSeconds(waitTime);
-                waitTime = UnityEngine.Random.Range(5, 10);
+                waitTime = UnityEngine.Random.Range(4, 7);
                 callSpawn.Invoke();
                 customerCount++;
                 spawningCheck = false;

@@ -808,21 +808,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 6964953356272682268}
-  customerActivate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
-        m_MethodName: seatCust
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  tableList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   customerOrderGet:
     m_PersistentCalls:
       m_Calls:
@@ -838,11 +840,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  goodLeave:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 20
   gravity: 9.8
   range: 5
   controller: {fileID: 0}
-  MenuItem: {fileID: 7680538646270158136, guid: 54cb26ab43cb1b34dbb00cef3ce8fcc5, type: 3}
+  MenuItem: {fileID: 8340740573556146038, guid: 726430a4c3e996548accf36762041dc0, type: 3}
 --- !u!1 &1670895517614036453
 GameObject:
   m_ObjectHideFlags: 0

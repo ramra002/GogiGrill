@@ -1763,7 +1763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooking: 0
   cookTimer: 10
-  FoodItem: {fileID: 7143572242728108501, guid: 432a8379a6ce0a840984f24471076b5c, type: 3}
+  FoodItem: {fileID: 4611081341360806824, guid: edd4735ebcb168243b71ef865242dee7, type: 3}
 --- !u!1001 &1580429286
 PrefabInstance:
   m_ObjectHideFlags: 0

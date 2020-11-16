@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     public void generateOrder(){
         Item menu = (Item) Instantiate(MenuItem, itemSlot.position, itemSlot.rotation);
+        menu.gameObject.transform.Rotate(new Vector3(90,180,0));
         heldItem = menu;
 
         menu.Rb.isKinematic = true;
@@ -151,7 +152,6 @@ public class PlayerController : MonoBehaviour
     void Pickup(Item item) {
         heldItem = item;
 
-        item.GetComponent<ScaleConstraint>().constraintActive = false;
         item.Rb.isKinematic = true;
         item.Rb.velocity = Vector3.zero;
         item.Rb.angularVelocity = Vector3.zero;
@@ -159,14 +159,13 @@ public class PlayerController : MonoBehaviour
         item.transform.SetParent(itemSlot);
 
         item.transform.localPosition = Vector3.zero;
-        item.transform.localEulerAngles = Vector3.zero;
+        //item.transform.localEulerAngles = Vector3.zero;
     }
 
     void Drop(Item item){
         heldItem = null;
 
         item.transform.SetParent(null);
-        item.GetComponent<ScaleConstraint>().constraintActive = true;
         item.Rb.isKinematic = false;
 
         item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);

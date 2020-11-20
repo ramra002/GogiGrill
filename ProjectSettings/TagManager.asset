@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Food
+  - Table
+  - Customer
+  - Menu
   layers:
   - Default
   - TransparentFX

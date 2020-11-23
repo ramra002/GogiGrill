@@ -21,5 +21,6 @@ public class CustomerSpawner : MonoBehaviour
         var newCust = (GameObject) Instantiate(newCustomer, transform.position, transform.rotation);
         newCust.transform.Rotate(new Vector3(0,180,0));
         newCust.transform.SetParent(transform);
+        //CUSTOMER ARRIVAL SOUND GOES HERE
     }
 }

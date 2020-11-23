@@ -83,6 +83,7 @@ public class Customer : MonoBehaviour
                 leaveToggle();
                 menuToggle();
             }
+            
             menuTimer = menuTimer - Time.deltaTime;
 
             menuTimerText.text = Math.Round(menuTimer).ToString();
@@ -92,6 +93,7 @@ public class Customer : MonoBehaviour
                 menu = false;
                 custFinished.gameObject.SetActive(true);
                 order = true;
+                //CUSTOMER READY TO ORDER SOUND
                 menuToggle();
                 leaveToggle();
             }
@@ -107,6 +109,7 @@ public class Customer : MonoBehaviour
                 leaveToggle();
                 eatToggle();
             }
+            
             eatTimer = eatTimer - Time.deltaTime;
 
             eatTimerText.text = Math.Round(eatTimer).ToString();

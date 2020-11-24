@@ -10,9 +10,13 @@ public class CustomerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CustomerArrive = GetComponents<AudioSource>()[0];
+
     }
 
+    void Awake()
+    {
+        CustomerArrive = GetComponents<AudioSource>()[0];
+    }
     // Update is called once per frame
     void Update()
     {

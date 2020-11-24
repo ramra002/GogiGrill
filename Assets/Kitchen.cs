@@ -15,6 +15,7 @@ public class Kitchen : MonoBehaviour
 	
 	private AudioSource foodReadySound;
 	private AudioSource OrderRecievedSound;
+	private AudioSource CookingSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Kitchen : MonoBehaviour
 		//for sounds
 		foodReadySound = GetComponents<AudioSource>()[0];
 		OrderRecievedSound = GetComponents<AudioSource>()[1];
+		CookingSound = GetComponents<AudioSource>()[2];
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class Kitchen : MonoBehaviour
             cooking = true;
             //ORDER RECIEVED SOUND GOES HEREs
 			OrderRecievedSound.Play();
+			CookingSound.Play();
             }
             else{
                 return;

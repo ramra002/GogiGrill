@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,6 +62,14 @@ public class PlayerController : MonoBehaviour
             customerSeat(objects);
             customerOrder(objects);
             customerCheck(objects);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L)){
+            SceneManager.LoadScene("Lose");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.K)){
+            SceneManager.LoadScene("Win");
         }
 
     }
@@ -134,9 +143,11 @@ public class PlayerController : MonoBehaviour
             if (newObject.tag == "Customer"){
                 if(newObject.gameObject.GetComponent<Customer>()){
                     Customer checkCust = newObject.gameObject.GetComponent<Customer>();
+                    AudioSource happyAudio = newObject.gameObject.GetComponents<AudioSource>()[1];
                     if (checkCust.checkReady == true){
                         Debug.Log("goodExit");
-                        Destroy(newObject.gameObject);
+                        happyAudio.Play();
+                        Destroy(newObject.gameObject, happyAudio.clip.length);
                         goodLeave.Invoke();
                     }
                 }

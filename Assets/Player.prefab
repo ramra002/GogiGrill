@@ -847,7 +847,7 @@ MonoBehaviour:
   goodLeave:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4453906608713214796, guid: db72ed82dcb305f46bc44271d0d18cd3, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameLogic, Assembly-CSharp
         m_MethodName: goodLeave
         m_Mode: 1

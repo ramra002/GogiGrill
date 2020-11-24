@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +12,18 @@ public class Kitchen : MonoBehaviour
     public Item FoodItem;
 
     private Text cookTime;
+	
+	private AudioSource foodReadySound;
+	private AudioSource OrderRecievedSound;
     // Start is called before the first frame update
     void Start()
     {
         cookTime = transform.Find("FoodCounter").Find("Canvas").Find("FoodCount").GetComponent<Text>();
         cookTime.gameObject.SetActive(false);
+		
+		//for sounds
+		foodReadySound = GetComponents<AudioSource>()[0];
+		OrderRecievedSound = GetComponents<AudioSource>()[1];
     }
 
     // Update is called once per frame
@@ -40,6 +47,7 @@ public class Kitchen : MonoBehaviour
                 newFood.gameObject.transform.position = new Vector3(27, 7, 1);
                 cookTimer = 10.0f;
                 //FOOD READY SOUND GOES HERE
+				foodReadySound.Play();
             }
         }
     }
@@ -50,6 +58,7 @@ public class Kitchen : MonoBehaviour
             Destroy(col.gameObject);
             cooking = true;
             //ORDER RECIEVED SOUND GOES HEREs
+			OrderRecievedSound.Play();
             }
             else{
                 return;

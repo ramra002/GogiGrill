@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +32,8 @@ public class Customer : MonoBehaviour
     private Image eatTimerBack;
 
     private Image custFinished;
+	
+	private AudioSource CustomerReadytoOrder;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,6 +68,8 @@ public class Customer : MonoBehaviour
         eatTimerBar.gameObject.SetActive(false);
         eatTimerBack.gameObject.SetActive(false);
         custFinished.gameObject.SetActive(false);
+		//for Sounds
+		CustomerReadytoOrder = GetComponents<AudioSource>()[0];
     }
 
     // Update is called once per frame
@@ -94,6 +98,7 @@ public class Customer : MonoBehaviour
                 custFinished.gameObject.SetActive(true);
                 order = true;
                 //CUSTOMER READY TO ORDER SOUND
+				CustomerReadytoOrder.Play();
                 menuToggle();
                 leaveToggle();
             }

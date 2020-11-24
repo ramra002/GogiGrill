@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +17,12 @@ public class GameLogic : MonoBehaviour
     private Text maxGoodCount;
     private Text badCount;
     private Text maxBadCount;
+	
+	private AudioSource LoseSound;
+	private AudioSource WinSound;
+	private AudioSource CustomerHappy;
+	private AudioSource CustomerUnhappy;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +38,12 @@ public class GameLogic : MonoBehaviour
 
         maxGoodCount = transform.Find("Canvas").Find("background1").Find("maxHappyCount").GetComponent<Text>();
         maxBadCount = transform.Find("Canvas").Find("background2").Find("maxLostCount").GetComponent<Text>();
-    }
+    
+		LoseSound = GetComponents<AudioSource>()[0];
+		WinSound = GetComponents<AudioSource>()[1];
+		CustomerHappy = GetComponents<AudioSource>()[2];
+		CustomerUnhappy  = GetComponents<AudioSource>()[3];
+	}
 
     // Update is called once per frame
     void Update()
@@ -45,11 +56,13 @@ public class GameLogic : MonoBehaviour
         if(badLeaveCount == maxLostCount){
             Debug.Log("End Game, lose.");
             //LOSE SOUND GOES HERE
+			LoseSound.Play();
             SceneManager.LoadScene("Lose");
         }
         if(goodLeaveCount == maxHappyCount){
             Debug.Log("Good Job!");
             //WIN SOUND GOES HERE
+			WinSound.Play();
             SceneManager.LoadScene("Win");
         }
         if (spawningCheck == false && customerCount < 4){
@@ -63,6 +76,7 @@ public class GameLogic : MonoBehaviour
         eventSys.customerCount--;
         Debug.Log("badLeave");
         //CUSTOMER LEAVE SAD SOUND GOES HERE
+		CustomerUnhappy.Play();
     }
 
     public void goodLeave(){
@@ -71,6 +85,7 @@ public class GameLogic : MonoBehaviour
         eventSys.customerCount--;
         Debug.Log("goodLeave");
         //CUSTOMER LEAVING HAPPY SOUND GOES HERE
+		CustomerHappy.Play();
     }
 
     public void spawnCheck(){

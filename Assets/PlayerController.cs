@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
     private Collider newObject;
 
     public Item MenuItem;
+	
+	private AudioSource pickUp1;
+	private AudioSource pickUp2;
+	private AudioSource playerDroppingItem;
+	private AudioSource seatingSound;
 
     void Start()
     {
@@ -34,6 +39,11 @@ public class PlayerController : MonoBehaviour
         tableList = GameObject.FindGameObjectsWithTag("Table");
         tableNumber = UnityEngine.Random.Range(0, 16);
     
+		//for sounds
+		pickUp1 = GetComponents<AudioSource>()[0];
+		pickUp2 = GetComponents<AudioSource>()[1];
+		playerDroppingItem = GetComponents<AudioSource>()[2];
+		seatingSound = GetComponents<AudioSource>()[3];
     }
 
     // Update is called once per frame
@@ -149,6 +159,7 @@ public class PlayerController : MonoBehaviour
         menu.transform.localEulerAngles = Vector3.zero;
 
         //PLAYER PICKUP SOUND GOES HERE
+		pickUp1.Play();
     }
 
     void Pickup(Item item) {
@@ -164,6 +175,7 @@ public class PlayerController : MonoBehaviour
         item.transform.localEulerAngles = Vector3.zero;
 
         //PLAYER PICKUP SOUND GOES HERE
+		pickUp2.Play();
     }
 
     void Drop(Item item){
@@ -174,6 +186,7 @@ public class PlayerController : MonoBehaviour
 
         item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
         //PLAYER DROPPING ITEM SOUND GOES HERE
+		playerDroppingItem.Play();
     }
 
     public void seatCust(Customer cust){
@@ -190,6 +203,7 @@ public class PlayerController : MonoBehaviour
         cust.menu = true; 
         cust.isSeated = true;
         //PLAYER SEATING CUSTOMER SOUND GOES HERE (OPTIONAL)
+		seatingSound.Play();
     }
 }
 

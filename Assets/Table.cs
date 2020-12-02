@@ -25,6 +25,7 @@ public class Table : MonoBehaviour
                     Destroy(col.gameObject);
                     temp.readyToEat = false;
                     temp.eating = true;
+                    //CUSTOMER RECIEVING FOOD SOUND GOES HERE
                 }
             }
         }

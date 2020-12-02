@@ -39,6 +39,7 @@ public class Kitchen : MonoBehaviour
                 Item newFood = (Item) Instantiate(FoodItem, transform.position, transform.rotation);
                 newFood.gameObject.transform.position = new Vector3(27, 7, 1);
                 cookTimer = 10.0f;
+                //FOOD READY SOUND GOES HERE
             }
         }
     }
@@ -48,6 +49,7 @@ public class Kitchen : MonoBehaviour
             if (cooking == false){
             Destroy(col.gameObject);
             cooking = true;
+            //ORDER RECIEVED SOUND GOES HEREs
             }
             else{
                 return;

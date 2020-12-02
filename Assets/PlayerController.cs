@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
     void charMove(){
         if (controller.isGrounded){
-            
             direction.x = Input.GetAxis("Horizontal");
             direction.z = Input.GetAxis("Vertical");
             direction = direction.normalized;
@@ -67,6 +66,7 @@ public class PlayerController : MonoBehaviour
         }
         
         controller.Move(direction * speed *  Time.deltaTime);
+        //CHARACTER MOVEMENT SOUND GOES HERE (OPTIONAL)
         
         if (Quaternion.LookRotation(direction).y != 0 || direction.z != 0){//rotates player to the direction they last moved in
            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 4.0f);
@@ -124,7 +124,12 @@ public class PlayerController : MonoBehaviour
             if (newObject.tag == "Customer"){
                 if(newObject.gameObject.GetComponent<Customer>()){
                     Customer checkCust = newObject.gameObject.GetComponent<Customer>();
+<<<<<<< Updated upstream
                     if (checkCust.checkReady == true){
+=======
+                    AudioSource happyAudio = newObject.gameObject.GetComponents<AudioSource>()[1];
+                    if (checkCust.checkReady == true && happyAudio.isPlaying == false){
+>>>>>>> Stashed changes
                         Debug.Log("goodExit");
                         Destroy(newObject.gameObject);
                         goodLeave.Invoke();
@@ -147,6 +152,8 @@ public class PlayerController : MonoBehaviour
 
         menu.transform.localPosition = Vector3.zero;
         menu.transform.localEulerAngles = Vector3.zero;
+
+        //PLAYER PICKUP SOUND GOES HERE
     }
 
     void Pickup(Item item) {
@@ -160,6 +167,8 @@ public class PlayerController : MonoBehaviour
 
         item.transform.localPosition = Vector3.zero;
         item.transform.localEulerAngles = Vector3.zero;
+
+        //PLAYER PICKUP SOUND GOES HERE
     }
 
     void Drop(Item item){
@@ -169,6 +178,7 @@ public class PlayerController : MonoBehaviour
         item.Rb.isKinematic = false;
 
         item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
+        //PLAYER DROPPING ITEM SOUND GOES HERE
     }
 
     public void seatCust(Customer cust){
@@ -184,6 +194,7 @@ public class PlayerController : MonoBehaviour
         }
         cust.menu = true; 
         cust.isSeated = true;
+        //PLAYER SEATING CUSTOMER SOUND GOES HERE (OPTIONAL)
     }
 }
 

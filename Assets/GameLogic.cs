@@ -44,10 +44,12 @@ public class GameLogic : MonoBehaviour
 
         if(badLeaveCount == maxLostCount){
             Debug.Log("End Game, lose.");
+            //LOSE SOUND GOES HERE
             SceneManager.LoadScene("Lose");
         }
         if(goodLeaveCount == maxHappyCount){
             Debug.Log("Good Job!");
+            //WIN SOUND GOES HERE
             SceneManager.LoadScene("Win");
         }
         if (spawningCheck == false && customerCount < 4){
@@ -60,12 +62,15 @@ public class GameLogic : MonoBehaviour
         eventSys.badLeaveCount++;
         eventSys.customerCount--;
         Debug.Log("badLeave");
+        //CUSTOMER LEAVE SAD SOUND GOES HERE
     }
 
     public void goodLeave(){
         GameLogic eventSys = (GameLogic) GameObject.Find("EventSystem").GetComponent<GameLogic>();
         eventSys.goodLeaveCount++;
         eventSys.customerCount--;
+        Debug.Log("goodLeave");
+        //CUSTOMER LEAVING HAPPY SOUND GOES HERE
     }
 
     public void spawnCheck(){

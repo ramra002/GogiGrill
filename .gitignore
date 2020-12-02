@@ -1,4 +1,8 @@
 /**/[Ll]ibrary/
+<<<<<<< Updated upstream
+=======
+/**/Library/
+>>>>>>> Stashed changes
 /**/[Tt]emp/
 /**/[Oo]bj/
 /**/[Bb]uild/
@@ -29,4 +33,9 @@
 
 # Builds
 **.apk
+<<<<<<< Updated upstream
 **.unitypackage
+=======
+**.unitypackage
+Library/SourceAssetDB
+>>>>>>> Stashed changes

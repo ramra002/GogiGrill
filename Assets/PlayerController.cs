@@ -124,12 +124,8 @@ public class PlayerController : MonoBehaviour
             if (newObject.tag == "Customer"){
                 if(newObject.gameObject.GetComponent<Customer>()){
                     Customer checkCust = newObject.gameObject.GetComponent<Customer>();
-<<<<<<< Updated upstream
-                    if (checkCust.checkReady == true){
-=======
                     AudioSource happyAudio = newObject.gameObject.GetComponents<AudioSource>()[1];
                     if (checkCust.checkReady == true && happyAudio.isPlaying == false){
->>>>>>> Stashed changes
                         Debug.Log("goodExit");
                         Destroy(newObject.gameObject);
                         goodLeave.Invoke();

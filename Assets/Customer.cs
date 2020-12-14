@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +19,7 @@ public class Customer : MonoBehaviour
     private float leaveTimer = 5.0f;
     private float menuTimer = 1.0f;
     private float eatTimer = 10.0f;
+    bool destroyed = false;
     private Text leaveTimerText;
     private Image leaveTimerBar;
     private Image leaveTimerBack;
@@ -32,6 +33,11 @@ public class Customer : MonoBehaviour
     private Image eatTimerBack;
 
     private Image custFinished;
+	
+	private AudioSource CustomerReadytoOrder;
+
+    private AudioSource CustomerHappy;
+	private AudioSource CustomerUnhappy;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,6 +72,11 @@ public class Customer : MonoBehaviour
         eatTimerBar.gameObject.SetActive(false);
         eatTimerBack.gameObject.SetActive(false);
         custFinished.gameObject.SetActive(false);
+		
+        //for Sounds
+		CustomerReadytoOrder = GetComponents<AudioSource>()[0];
+        CustomerHappy = GetComponents<AudioSource>()[1];
+		CustomerUnhappy  = GetComponents<AudioSource>()[2];
     }
 
     // Update is called once per frame
@@ -75,7 +86,7 @@ public class Customer : MonoBehaviour
         leaveTimerText.text = Math.Round(leaveTimer).ToString();
 		leaveTimerBar.fillAmount = leaveTimer / maxLeaveTime;
 
-        if (menu == false && eating == false){
+        if (menu == false && eating == false && destroyed == false){
             leaveTimer = leaveTimer - Time.deltaTime;
         }
         if (menu == true){
@@ -94,6 +105,7 @@ public class Customer : MonoBehaviour
                 custFinished.gameObject.SetActive(true);
                 order = true;
                 //CUSTOMER READY TO ORDER SOUND
+				CustomerReadytoOrder.Play();
                 menuToggle();
                 leaveToggle();
             }
@@ -131,9 +143,13 @@ public class Customer : MonoBehaviour
         }
 
         if (leaveTimer <= 0){
-            Debug.Log("exit");
-            badLeave.Invoke();
-            Destroy(gameObject);   
+            if (destroyed == false){
+                Debug.Log("exit");
+                CustomerUnhappy.Play();
+                badLeave.Invoke();
+                Destroy(gameObject, CustomerUnhappy.clip.length);   
+                destroyed = true;
+            }
         }
 
     }

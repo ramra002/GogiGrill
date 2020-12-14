@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +17,8 @@ public class GameLogic : MonoBehaviour
     private Text maxGoodCount;
     private Text badCount;
     private Text maxBadCount;
+
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,12 @@ public class GameLogic : MonoBehaviour
 
         maxGoodCount = transform.Find("Canvas").Find("background1").Find("maxHappyCount").GetComponent<Text>();
         maxBadCount = transform.Find("Canvas").Find("background2").Find("maxLostCount").GetComponent<Text>();
+
+	}
+
+    void Awake()
+    {
+		
     }
 
     // Update is called once per frame
@@ -44,12 +52,10 @@ public class GameLogic : MonoBehaviour
 
         if(badLeaveCount == maxLostCount){
             Debug.Log("End Game, lose.");
-            //LOSE SOUND GOES HERE
             SceneManager.LoadScene("Lose");
         }
         if(goodLeaveCount == maxHappyCount){
             Debug.Log("Good Job!");
-            //WIN SOUND GOES HERE
             SceneManager.LoadScene("Win");
         }
         if (spawningCheck == false && customerCount < 4){
@@ -62,7 +68,6 @@ public class GameLogic : MonoBehaviour
         eventSys.badLeaveCount++;
         eventSys.customerCount--;
         Debug.Log("badLeave");
-        //CUSTOMER LEAVE SAD SOUND GOES HERE
     }
 
     public void goodLeave(){
@@ -70,7 +75,6 @@ public class GameLogic : MonoBehaviour
         eventSys.goodLeaveCount++;
         eventSys.customerCount--;
         Debug.Log("goodLeave");
-        //CUSTOMER LEAVING HAPPY SOUND GOES HERE
     }
 
     public void spawnCheck(){

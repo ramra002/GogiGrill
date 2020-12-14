@@ -1,13 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Table : MonoBehaviour
 {
+	private AudioSource recieveFood;
+	
     // Start is called before the first frame update
     void Start()
     {
-        
+        recieveFood = GetComponents<AudioSource>()[0];
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class Table : MonoBehaviour
                     temp.readyToEat = false;
                     temp.eating = true;
                     //CUSTOMER RECIEVING FOOD SOUND GOES HERE
+					recieveFood.Play();
                 }
             }
         }

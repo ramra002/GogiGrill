@@ -37,7 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Customer.cs" />
+     <Compile Include="Assets\Lose.cs" />
      <Compile Include="Assets\ExitGame.cs" />
+     <Compile Include="Assets\Win.cs" />
      <Compile Include="Assets\CustomerSpawner.cs" />
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\StartMenu.cs" />
@@ -47,6 +49,7 @@
      <Compile Include="Assets\GameLogic.cs" />
      <Compile Include="Assets\Table.cs" />
      <None Include="Assets\Table and chair\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+     <None Include="Assets\hitori_yubin_soundpack\yubin_readme.txt" />
     <Reference Include="UnityEngine">
         <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

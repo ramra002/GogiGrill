@@ -8,3 +8,4 @@
 # Diego Hernandez
 # Neala Mendoza
 # Keegan Wulf
+# Rishi Ramrakhyani

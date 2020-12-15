@@ -46,7 +46,7 @@ public class Kitchen : MonoBehaviour
                 cooking = false;
                 cookTime.gameObject.SetActive(false);
                 Item newFood = (Item) Instantiate(FoodItem, transform.position, transform.rotation);
-                newFood.gameObject.transform.position = new Vector3(27, 7, 1);
+                newFood.gameObject.transform.position = new Vector3(25, 8, 1);
                 cookTimer = 10.0f;
                 //FOOD READY SOUND GOES HERE
 				foodReadySound.Play();

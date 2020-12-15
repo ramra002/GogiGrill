@@ -158,16 +158,7 @@ public class PlayerController : MonoBehaviour
     public void generateOrder(){
         Item menu = (Item) Instantiate(MenuItem, itemSlot.position, itemSlot.rotation);
         menu.gameObject.transform.Rotate(new Vector3(90,180,0));
-        heldItem = menu;
-
-        menu.Rb.isKinematic = true;
-        menu.Rb.velocity = Vector3.zero;
-        menu.Rb.angularVelocity = Vector3.zero;
-
-        menu.transform.SetParent(itemSlot);
-
-        menu.transform.localPosition = Vector3.zero;
-        menu.transform.localEulerAngles = Vector3.zero;
+        Pickup(menu);
 
         //PLAYER PICKUP SOUND GOES HERE
 		pickUp1.Play();
@@ -176,6 +167,7 @@ public class PlayerController : MonoBehaviour
     void Pickup(Item item) {
         heldItem = item;
 
+        item.isHeld = true;
         item.Rb.isKinematic = true;
         item.Rb.velocity = Vector3.zero;
         item.Rb.angularVelocity = Vector3.zero;
@@ -192,6 +184,7 @@ public class PlayerController : MonoBehaviour
     void Drop(Item item){
         heldItem = null;
 
+        item.isHeld = false;
         item.transform.SetParent(null);
         item.Rb.isKinematic = false;
 
@@ -206,9 +199,18 @@ public class PlayerController : MonoBehaviour
             if (chair.transform.childCount == 0){
                 cust.transform.SetParent(chair.transform);
                 cust.transform.position = new Vector3 (chair.transform.position.x, chair.transform.position.y + 2, chair.transform.position.z);
+
+                if (cust.transform.childCount > 1){
+                    for (int j = 1; j < cust.transform.childCount; j++){
+                        GameObject groupChair = tableList[tableNumber].transform.GetChild((j)).GetChild(0).gameObject;
+                        GameObject group = cust.transform.GetChild(j).gameObject;
+
+                        group.transform.position = new Vector3(groupChair.transform.position.x, groupChair.transform.position.y + 2, groupChair.transform.position.z);
+                    }
+                }
             }
             else{
-                tableNumber = UnityEngine.Random.Range(0, 16);
+                tableNumber = UnityEngine.Random.Range(0, 15);
             } 
         }
         cust.menu = true; 

@@ -12,6 +12,8 @@ public class Item : MonoBehaviour
 
     public Transform target;
 
+    public bool isHeld = false;
+
     public float range = 1;
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -25,9 +27,10 @@ public class Item : MonoBehaviour
 
     void wallCheck(Collider[] objects){
         foreach(Collider newObject in objects){
-            if (newObject.tag == "Wall"){
+            if (newObject.tag == "Wall" && isHeld == false){
                 target = GameObject.Find("Player").transform;
-                transform.position = (transform.position - target.position);
+                transform.LookAt(target, Vector3.up);
+		        transform.position += transform.forward;
             }
         }
     }

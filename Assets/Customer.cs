@@ -192,4 +192,14 @@ public class Customer : MonoBehaviour
             eatTimerBack.gameObject.SetActive(true);
         }
     }
+
+    public void setTimers(int groupNum){
+    maxLeaveTime = 50.0f + (5.0f * groupNum);
+
+    leaveTimer = maxLeaveTime;
+    eatTimer = UnityEngine.Random.Range((10 * groupNum), (15 * groupNum));
+    maxEatTime = eatTimer;
+    menuTimer = UnityEngine.Random.Range((5 * groupNum), (10 * groupNum));
+    maxMenuTime = menuTimer;
+    }
 }
